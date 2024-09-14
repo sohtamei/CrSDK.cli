@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include=".\app\CameraDevice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include=".\app\ConnectionInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include=".\app\PropertyValueTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include=".\app\RemoteCli.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include=".\app\Text.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include=".\app\MessageDefine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include=".\app\CameraDevice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include=".\app\ConnectionInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include=".\app\PropertyValueTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include=".\app\Text.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include=".\app\MessageDefine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include=".\app\CRSDK\CameraRemote_SDK.h">
+      <Filter>CRSDK</Filter>
+    </ClInclude>
+    <ClInclude Include=".\app\CRSDK\CrCommandData.h">
+      <Filter>CRSDK</Filter>
+    </ClInclude>
+    <ClInclude Include=".\app\CRSDK\CrDefines.h">
+      <Filter>CRSDK</Filter>
+    </ClInclude>
+    <ClInclude Include=".\app\CRSDK\CrDeviceProperty.h">
+      <Filter>CRSDK</Filter>
+    </ClInclude>
+    <ClInclude Include=".\app\CRSDK\CrError.h">
+      <Filter>CRSDK</Filter>
+    </ClInclude>
+    <ClInclude Include=".\app\CRSDK\CrImageDataBlock.h">
+      <Filter>CRSDK</Filter>
+    </ClInclude>
+    <ClInclude Include=".\app\CRSDK\CrTypes.h">
+      <Filter>CRSDK</Filter>
+    </ClInclude>
+    <ClInclude Include=".\app\CRSDK\ICrCameraObjectInfo.h">
+      <Filter>CRSDK</Filter>
+    </ClInclude>
+    <ClInclude Include=".\app\CRSDK\IDeviceCallback.h">
+      <Filter>CRSDK</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CRSDK">
+      <UniqueIdentifier>{032C81B2-17D0-3C67-AC38-EB53F597FC0C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{04A18B1F-D7CC-36C0-965F-EB102F3AC94C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{C6CFF7F5-9856-3752-856B-B504388EE30B}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
