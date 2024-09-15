@@ -242,17 +242,27 @@ Error:
     return -1;
 }
 
+#if defined(__APPLE__) || defined(__linux__)
+#if !defined(NDEBUG)
+  #define _DEBUG
+#endif
+#endif
+
 void SendProp(SCRSDK::CrDevicePropertyCode id)
 {
+  #if defined(_DEBUG)
 	auto prop = camera->GetProp_(id);
 	if(prop)
 		std::cout << prop->tag << "=" << convVal2Text(prop, prop->current) << std::endl;
 	else
 		std::cout << "unknown(" << std::hex << id << ")" << "\n";
+  #endif
 }
 
 void ErrorProp(SCRSDK::CrDevicePropertyCode id, std::string message)
 {
+  #if defined(_DEBUG)
 	auto prop = camera->GetProp_(id);
 	std::cout << prop->tag << " - Error" << std::endl;
+  #endif
 }
