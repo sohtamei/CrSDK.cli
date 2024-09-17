@@ -188,9 +188,13 @@ int main(void)
 						std::cout << convVal2Text(prop, prop->possible[i]) << ((prop->current==prop->possible[i])?" *":"") << std::endl;
 					}
 				} else if(inputs[0] == "set" && inputs.size() >= 3) {
-					ret = camera->SetProp_(id, inputs[2]);
-					if(!ret) ret = camera->waitProp(id, 2000);
-					if(!ret) std::cout << "OK\n";
+					if(inputs[2] == convVal2Text(prop, prop->current)) {
+						std::cout << "skipped\n";
+					} else {
+						ret = camera->SetProp_(id, inputs[2]);
+						if(!ret) ret = camera->waitProp(id, 2000);
+						if(!ret) std::cout << "OK\n";
+					}
 				}
 			} else {
 				if(inputs[0] == "get") {
