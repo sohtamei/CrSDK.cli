@@ -21,7 +21,9 @@ namespace SCRSDK
 		CrError_Adaptor								= 0x8700,
 		CrError_Device								= 0x8800,
 		CrError_Contents							= 0x8C00,
+		CrError_RemoteTransfer						= 0x8D00,
 		CrError_Monitoring							= 0x9100,
+		CrError_Playback							= 0x9200,
 
 		CrError_Application							= 0xc000, /* Do not use. Will be removed in the next release. */
 
@@ -100,6 +102,7 @@ namespace SCRSDK
 		CrError_Connect_SSH_PortfowardFailed,	/* Do not use. Will be removed in the next release. */
 		CrError_Connect_SSH_PortForwardFailed = CrError_Connect_SSH_PortfowardFailed,
 		CrError_Connect_SSH_GetFingerprintFailed,
+		CrError_Connect_RemoteTransfer_NotSupported,
 
 		//Memory related
 		CrError_Memory_Unknown						= CrError_Memory,
@@ -154,10 +157,24 @@ namespace SCRSDK
 		CrError_Contents_Transfer_Cancel,
 		CrError_Contents_RejectRequest,
 
+		// RemoteTransfer
+		CrError_RemoteTransfer_Unknown				= CrError_RemoteTransfer,
+		CrError_RemoteTransfer_VideoFileNotSupported,
+		CrError_RemoteTransfer_ContentNotFound,
+		CrError_RemoteTransfer_GetContentsDataDisable,
+		CrError_RemoteTransfer_StatusError,
+
 		// Monitoring
 		CrError_Monitoring_Unknown					= CrError_Monitoring,
 		CrError_Monitoring_InvalidCalled_AlreadyStart,
 		CrError_Monitoring_InvalidCalled_AlreadyStop,
+		CrError_Monitoring_InvalidCalled_LiveViewEnabled,
+		CrError_Monitoring_InvalidCalled_PlaybackEnabled,
+
+		// Movie Playback
+		CrError_Playback_Unknown					= CrError_Playback,
+		CrError_Playback_InvalidCalled_LiveViewEnabled,
+		CrError_Playback_InvalidCalled_MonitoringEnabled,
 
 		CrWarning_Unknown							= 0x00020000,
 		CrWarning_Connect_Reconnected,
@@ -292,8 +309,8 @@ namespace SCRSDK
 		CrWarning_ControlMonitoring_Result_AlreadyStartedInDifferentType,
 		CrWarning_ControlMonitoring_Result_MonitoringStopped,
 		CrWarning_ControlMonitoring_Result_InvalidParameter,
-		CrWarning_ControlMonitoring_Result_Reserved1,
-		CrWarning_ControlMonitoring_Result_Reserved2,
+		CrWarning_ControlMonitoring_Result_WifiHighTemperature,
+		CrWarning_ControlMonitoring_Result_Streaming,
 		CrWarning_ControlMonitoring_StatusChanged,
 		CrWarning_ControlMonitoring_LostReceiving,
 		CrWarning_RequestZoomAndFocusPreset_Result_Success,
@@ -303,10 +320,57 @@ namespace SCRSDK
 		CrWarning_CautionDisplay,
 		CrNotify_FTPTransferResult_Success,
 		CrNotify_FTPTransferResult_Failure,
+		CrWarning_ZoomPosition_Result_Invalid,
+		CrWarning_ZoomPosition_Result_OK,
+		CrWarning_ZoomPosition_Result_Reserved1,
+		CrWarning_ZoomPosition_Result_Reserved2,
+		CrNotify_RemoteTransfer_Result_OK,
+		CrNotify_RemoteTransfer_Result_NG,
+		CrNotify_RemoteTransfer_Result_DeviceBusy,
+		CrNotify_RemoteTransfer_Changed_All,
+		CrNotify_RemoteTransfer_Changed_Add,
+		CrNotify_RemoteTransfer_Changed_Clear,
+		CrNotify_RemoteTransfer_InProgress,
+		CrNotify_RemoteTransfer_Control_Stopped,
+		CrNotify_RemoteTransfer_Control_Canceled,
+		CrWarning_SetPostViewEnable_Result_OK,
+		CrWarning_SetPostViewEnable_Result_NG,
+		CrWarning_DisplayListChanged_CameraButtonFunctionCapabilityDisplayList,
+		CrWarning_DisplayListChanged_CameraLeverFunctionCapabilityDisplayList,
+		CrWarning_DisplayListChanged_CameraDialFunctionCapabilityDisplayList,
+		CrWarning_Playback_Result_Invalid,
+		CrNotify_Playback_Result_NormalTermination,
+		CrWarning_Playback_Result_CameraOperateTermination,
+		CrWarning_Playback_Result_SystemError,
+		CrWarning_Playback_Result_HighTemperature,
+		CrWarning_Playback_Result_MediaRemoval,
+		CrWarning_Playback_Result_ContentsError,
+		CrWarning_Playback_Result_KeepAliveTimeout,
+		CrNotify_Playback_StatusChanged,
+		CrNotify_Playback_Result_StopComplete,
+		CrWarning_Playback_Result_Start_Fail,
+		CrWarning_Playback_Result_Stop_Fail,
+		CrWarning_Playback_Result_Play_Fail,
+		CrWarning_Playback_Result_Pause_Fail,
+		CrNotify_Playback_Result_PlaybackInfo_Success,
+		CrWarning_Playback_Result_PlaybackInfo_Error,
+		CrNotify_RemoteFirmware_Precheck_OK,
+		CrNotify_RemoteFirmware_Precheck_NG,
+		CrNotify_RemoteFirmware_UpdateEvent,
+		CrNotify_RemoteFirmware_GetUpdaterInfo_Request_NG,
+		CrNotify_RemoteFirmware_GetUpdaterInfo_OK,
+		CrNotify_RemoteFirmware_GetUpdaterInfo_NG,
+		CrNotify_RemoteFirmware_Upload_OK,
+		CrNotify_RemoteFirmware_Upload_NG,
+		CrNotify_RemoteFirmware_Upload_Rate,
+		CrNotify_RemoteFirmware_Update_OK,
+		CrNotify_RemoteFirmware_Update_NG,
+		CrWarning_ControlMonitoring_ErrorOccurred,
 
 		CrWarningExt_Unknown = 0x00060000,
 		CrWarningExt_AFStatus,
 		CrWarningExt_OperationResults,
+		CrWarningExt_OperationInvalid,
 	};
 
 	enum CrWarningExt_AFStatusParam : CrInt32
@@ -327,6 +391,82 @@ namespace SCRSDK
 		CrWarningExt_OperationResultsParam_InvalidParameterError,
 		CrWarningExt_OperationResultsParam_CameraStatusError,
 		CrWarningExt_OperationResultsParam_CharacterSizeError = 0x00000011,
+	};
+
+	// for OnNotifyRemoteFirmwareUpdateResult()
+	// case CrNotify_RemoteFirmware_Precheck_NG
+	// case CrNotify_RemoteFirmware_UpdateEvent
+	enum CrNotifyParam_FirmwareUpdateEvent : CrInt32u
+	{
+		CrNotifyParam_FirmwareUpdateEvent_LowBattery,
+		CrNotifyParam_FirmwareUpdateEvent_NoMedia,
+		CrNotifyParam_FirmwareUpdateEvent_MediaNoWritable,
+		CrNotifyParam_FirmwareUpdateEvent_OverFileSize,
+		CrNotifyParam_FirmwareUpdateEvent_OverHeating,
+		CrNotifyParam_FirmwareUpdateEvent_OperationLock,
+		CrNotifyParam_FirmwareUpdateEvent_Capturing,
+		CrNotifyParam_FirmwareUpdateEvent_DeviceBusy,
+		CrNotifyParam_FirmwareUpdateEvent_Other = 0x80000000,
+		CrNotifyParam_FirmwareUpdateEvent_Unknown,
+		CrNotifyParam_FirmwareUpdateEvent_InvalidParameter,
+	};
+
+	// for OnNotifyRemoteFirmwareUpdateResult()
+	// case CrNotify_RemoteFirmware_Upload_NG
+	enum CrNotifyParam_FirmwareUploadResult : CrInt32u
+	{
+		CrNotifyParam_FirmwareUploadResult_Other,
+		CrNotifyParam_FirmwareUploadResult_Unknown,
+		CrNotifyParam_FirmwareUploadResult_InvalidParameter,
+		CrNotifyParam_FirmwareUploadResult_NotSupported,
+		CrNotifyParam_FirmwareUploadResult_File_NotFound,
+		CrNotifyParam_FirmwareUploadResult_File_CantOpen,
+		CrNotifyParam_FirmwareUploadResult_File_CantRead,
+		CrNotifyParam_FirmwareUploadResult_File_NotYetCompleted,
+		CrNotifyParam_FirmwareUploadResult_LowBattery = 0x80000000,
+		CrNotifyParam_FirmwareUploadResult_NoMedia,
+		CrNotifyParam_FirmwareUploadResult_MediaNoWritable,
+		CrNotifyParam_FirmwareUploadResult_OverFileSize,
+		CrNotifyParam_FirmwareUploadResult_OverHeating,
+		CrNotifyParam_FirmwareUploadResult_OperationLock,
+		CrNotifyParam_FirmwareUploadResult_Capturing,
+		CrNotifyParam_FirmwareUploadResult_DeviceBusy,
+	};
+
+	// for OnNotifyRemoteFirmwareUpdateResult()
+	// case CrNotify_RemoteFirmware_GetUpdaterInfo_NG
+	enum CrNotifyParam_FirmwareUpdaterGetStatus : CrInt32u
+	{
+		CrNotifyParam_FirmwareUpdaterGetStatus_OK,
+		CrNotifyParam_FirmwareUpdaterGetStatus_NG_MediaError,
+		CrNotifyParam_FirmwareUpdaterGetStatus_NG_ReadError,
+		CrNotifyParam_FirmwareUpdaterGetStatus_NG_InvalidData,
+		CrNotifyParam_FirmwareUpdaterGetStatus_NG_InvalidVersion,
+		CrNotifyParam_FirmwareUpdaterGetStatus_NG_InvalidRegion,
+		CrNotifyParam_FirmwareUpdaterGetStatus_NG_InvalidModel,
+		CrNotifyParam_FirmwareUpdaterGetStatus_NG_LowBattery,
+		CrNotifyParam_FirmwareUpdaterGetStatus_NG_BadBattery,
+		CrNotifyParam_FirmwareUpdaterGetStatus_NG_General_Other,
+	};
+
+	// for OnNotifyRemoteFirmwareUpdateResult()
+	// case CrNotify_RemoteFirmware_Update_NG
+	enum CrNotifyParam_FirmwareUpdateResult : CrInt32u
+	{
+		CrNotifyParam_FirmwareUpdateResult_OK,
+		CrNotifyParam_FirmwareUpdateResult_NG_Invalid,
+		CrNotifyParam_FirmwareUpdateResult_NG_MediaError,
+		CrNotifyParam_FirmwareUpdateResult_NG_ReadError,
+		CrNotifyParam_FirmwareUpdateResult_NG_InvalidData,
+		CrNotifyParam_FirmwareUpdateResult_NG_InvalidVersion,
+		CrNotifyParam_FirmwareUpdateResult_NG_InvalidRegion,
+		CrNotifyParam_FirmwareUpdateResult_NG_InvalidModel,
+		CrNotifyParam_FirmwareUpdateResult_NG_LowBattery,
+		CrNotifyParam_FirmwareUpdateResult_NG_BadBattery,
+		CrNotifyParam_FirmwareUpdateResult_NG_General_Other,
+		CrNotifyParam_FirmwareUpdateResult_NG_DeviceBusy = 0x80000000,
+		CrNotifyParam_FirmwareUpdateResult_NG_TemporaryStorageFull,
+		CrNotifyParam_FirmwareUpdateResult_NG_InvalidParameter,
 	};
 
 	#define CR_SUCCEEDED(e)	(SCRSDK::CrError_None == (e))

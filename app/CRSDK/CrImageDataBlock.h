@@ -1,4 +1,4 @@
-#ifndef CRIMAGEDATABLOCK_H
+﻿#ifndef CRIMAGEDATABLOCK_H
 #define CRIMAGEDATABLOCK_H
 
 #include "CrDefines.h"
@@ -66,6 +66,51 @@ private:
 	CrInt32u imageSize;
 	//SMPTE 12M time-code from Monitoring library.
 	CrInt32u timeCode;
+};
+
+// Twice the maximum size of the OSD image 
+// # Calculate the method : ((640[width] x 480[height] x 4 + 4096[memory alignment]) x 2)
+#define CR_OSD_IMAGE_MAX_SIZE	(((640 * 480 * 4) + 4096) *2)
+
+enum CrIsLvPosExist : CrInt32u
+{
+	CrIsLvPosExist_Disable = 0,
+	CrIsLvPosExist_Enable,
+};
+
+class SCRSDK_API CrOSDImageMetaInfo
+{
+public:
+	CrOSDImageMetaInfo();
+	~CrOSDImageMetaInfo();
+
+	CrIsLvPosExist isLvPosExist;
+	CrInt32u osdWidth;
+	CrInt32u osdHeight;
+	CrInt32u lvPosX;
+	CrInt32u lvPosY;
+	CrInt32u lvWidth;
+	CrInt32u lvHeight;
+	CrInt32u degree;
+};
+
+class SCRSDK_API CrOSDImageDataBlock
+{
+public:
+	CrOSDImageDataBlock();
+	~CrOSDImageDataBlock();
+
+	CrInt32u GetFrameNo();
+	CrInt32u GetImageSize();
+	CrInt8u* GetImageData();
+	void SetData(CrInt8u* data);
+	CrOSDImageMetaInfo GetMetaInfo();
+
+private:
+	CrInt32u frameNo;
+	CrInt8u* pData;
+	CrInt32u imageSize;
+	CrOSDImageMetaInfo metaInfo;
 };
 
 }

@@ -32,6 +32,18 @@ public:
 	virtual void OnError(CrInt32u error) { }
 
 	virtual void OnNotifyFTPTransferResult(CrInt32u notify, CrInt32u numOfSuccess, CrInt32u numOfFail) { }
+
+	virtual void OnNotifyRemoteTransferResult(CrInt32u notify, CrInt32u per, CrChar* filename) { }
+
+	virtual void OnNotifyRemoteTransferResult(CrInt32u notify, CrInt32u per, CrInt8u* data, CrInt64u size) { }
+
+	virtual void OnNotifyRemoteTransferContentsListChanged(CrInt32u notify, CrInt32u slotNumber, CrInt32u addSize) { }
+
+	virtual void OnNotifyRemoteFirmwareUpdateResult(CrInt32u notify, const void* param) { }
+
+	virtual void OnReceivePlaybackTimeCode(CrInt32u timeCode) { }
+
+	virtual void OnReceivePlaybackData(CrInt8u mediaType, CrInt32 dataSize, CrInt8u* data, CrInt64 pts, CrInt64 dts, CrInt32 param1, CrInt32 param2) { }
 };
 
 }// namespace SCRSDK

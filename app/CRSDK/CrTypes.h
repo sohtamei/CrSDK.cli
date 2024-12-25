@@ -1,4 +1,4 @@
-#ifndef CRTYPES_H
+﻿#ifndef CRTYPES_H
 #define CRTYPES_H
 
 // #if defined(_MSC_VER)

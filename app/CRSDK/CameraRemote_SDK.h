@@ -310,5 +310,89 @@ CrError ReleaseZoomAndFocusPreset(/*in*/ CrDeviceHandle deviceHandle, CrZoomAndF
 extern "C"
 SCRSDK_API
 CrError RequestFTPTransferResult(/*in*/ CrDeviceHandle deviceHandle, /*in*/ CrSlotNumber slotNumber);
+
+extern "C"
+SCRSDK_API
+CrError GetOSDImage(/*in*/ CrDeviceHandle deviceHandle, /*out*/ CrOSDImageDataBlock* imageData);
+
+extern "C"
+SCRSDK_API
+CrError GetRemoteTransferCapturedDateList(/*in*/ CrDeviceHandle deviceHandle, /*in*/ CrSlotNumber slotNumber, /* out */ CrCaptureDate** captureDateList, /* out */ CrInt32u* nums);
+
+extern "C"
+SCRSDK_API
+CrError GetRemoteTransferContentsInfoList(/*in*/ CrDeviceHandle deviceHandle, /*in*/ CrSlotNumber slotNumber, /*in*/ CrGetContentsInfoListType type, /* in */ CrCaptureDate* captureDate, /* in */ CrInt32u maxNums,  /* out */ CrContentsInfo** contentsInfoList, /* out */ CrInt32u* nums);
+
+extern "C"
+SCRSDK_API
+CrError GetRemoteTransferContentsData(CrDeviceHandle deviceHandle, /*in*/ CrSlotNumber slotNumber, /*in*/ CrInt32u contentsId, /*in*/ CrInt32u fileId, /*in*/ CrInt32u divisionSize);
+
+extern "C"
+SCRSDK_API
+CrError GetRemoteTransferContentsDataFile(CrDeviceHandle deviceHandle, /*in*/ CrSlotNumber slotNumber, /*in*/ CrInt32u contentsId, /*in*/ CrInt32u fileId, /*in*/ CrInt32u divisionSize, /*in*/ CrChar* path, /*in*/ CrChar* fileName);
+
+extern "C"
+SCRSDK_API
+CrError ControlGetRemoteTransferContentsDataFile(CrDeviceHandle deviceHandle, /*in*/ CrGetContentsDataControlType type);
+
+extern "C"
+SCRSDK_API
+CrError GetRemoteTransferContentsCompressedData(CrDeviceHandle deviceHandle, /*in*/ CrSlotNumber slotNumber, /*in*/ CrInt32u contentsId, /*in*/ CrInt32u fileId, /*in*/ CrGetContentsCompressedDataType type);
+
+extern "C"
+SCRSDK_API
+CrError GetRemoteTransferContentsCompressedDataFile(CrDeviceHandle deviceHandle, /*in*/ CrSlotNumber slotNumber, /*in*/ CrInt32u contentsId, /*in*/ CrInt32u fileId, /*in*/ CrGetContentsCompressedDataType type, /*in*/ CrChar* path, /*in*/ CrChar* fileName);
+
+extern "C"
+SCRSDK_API
+CrError ReleaseRemoteTransferCapturedDateList(/*in*/ CrDeviceHandle deviceHandle, /*in*/ CrCaptureDate* dateList);
+
+extern "C"
+SCRSDK_API
+CrError ReleaseRemoteTransferContentsInfoList(/*in*/ CrDeviceHandle deviceHandle, /*in*/ CrContentsInfo* contentsInfoList);
+
+extern "C"
+SCRSDK_API
+CrError SetMoviePlaybackSetting(/*in*/ CrDeviceHandle deviceHandle, /*in*/ CrMoviePlaybackSetting* setting, /*in*/CrInt32u numOfSetting);
+
+extern "C"
+SCRSDK_API
+CrError GetMoviePlaybackSetting(/*in*/ CrDeviceHandle deviceHandle, /*in*/ CrMoviePlaybackSetting** setting, /*in*/CrInt32u* numOfSetting);
+
+extern "C"
+SCRSDK_API
+CrError ReleaseMoviePlaybackSetting(/*in*/ CrDeviceHandle deviceHandle, CrMoviePlaybackSetting* setting);
+
+extern "C"
+SCRSDK_API
+CrError ControlMoviePlayback(/*in*/ CrDeviceHandle deviceHandle, /*in*/ CrMoviePlaybackControlType operationMode, /*in*/ CrInt32u seekPosition = 0);
+
+extern "C"
+SCRSDK_API
+CrError RequestMoviePlaybackStatus(/*in*/ CrDeviceHandle deviceHandle);
+
+extern "C"
+SCRSDK_API
+CrError GetMoviePlaybackStatus(/*in*/ CrDeviceHandle deviceHandle, /*out*/ CrMoviePlaybackStatus* playbackStatus);
+
+extern "C"
+SCRSDK_API
+CrError PrecheckFirmwareUpdate(/*in*/ CrDeviceHandle deviceHandle, /*in*/ CrInt64u fwFileSize);
+
+extern "C"
+SCRSDK_API
+CrError UploadPartialFile(/*in*/ CrDeviceHandle deviceHandle, /*in*/ CrUploadPartialDataType type, /*in*/ CrChar * filePath);
+
+extern "C"
+SCRSDK_API
+CrError CancelFirmwareUpload(/*in*/ CrDeviceHandle deviceHandle);
+
+extern "C"
+SCRSDK_API
+CrError RequestFirmwareUpdaterInfo(/*in*/ CrDeviceHandle deviceHandle);
+
+extern "C"
+SCRSDK_API
+CrError StartFirmwareUpdate(/*in*/ CrDeviceHandle deviceHandle);
 }
 #endif //CAMERAREMOTE_SDK_H

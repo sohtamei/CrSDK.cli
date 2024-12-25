@@ -1,4 +1,4 @@
-#ifndef CRDEVICEPROPERTY_H
+﻿#ifndef CRDEVICEPROPERTY_H
 #define CRDEVICEPROPERTY_H
 
 #include "CrDefines.h"
@@ -446,6 +446,67 @@ enum CrDevicePropertyCode : CrInt32u
 	CrDeviceProperty_ControlForHDMI,
 	CrDeviceProperty_AntidustShutterWhenPowerOff,
 	CrDeviceProperty_WakeOnLAN,
+	CrDeviceProperty_CameraLeverFunction,
+	CrDeviceProperty_ShootingTimingPreNotificationMode,
+	CrDeviceProperty_MicrophoneDirectivity,
+	CrDeviceProperty_ProductShowcaseSet,
+	CrDeviceProperty_AmountOfDefocusSetting,
+	CrDeviceProperty_CinematicVlogSetting,
+	CrDeviceProperty_CinematicVlogLook,
+	CrDeviceProperty_CinematicVlogMood,
+	CrDeviceProperty_CinematicVlogAFTransitionSpeed,
+	CrDeviceProperty_MonitoringOutputDisplaySDI,
+	CrDeviceProperty_AFAreaPositionAF_C,
+	CrDeviceProperty_AFAreaPositionAF_S,
+	CrDeviceProperty_AutoFocusHold,
+	CrDeviceProperty_PushAFModeSetting,
+	CrDeviceProperty_TouchFunctionInMF,
+	CrDeviceProperty_PushAutoFocus,
+	CrDeviceProperty_PushAGC,
+	CrDeviceProperty_PushAutoIris,
+	CrDeviceProperty_PushAutoNDFilter,
+	CrDeviceProperty_NDFilterPresetSelect,
+	CrDeviceProperty_NDFilterPreset1Value,
+	CrDeviceProperty_NDFilterPreset2Value,
+	CrDeviceProperty_NDFilterPreset3Value,
+	CrDeviceProperty_WhiteBalanceSwitch,
+	CrDeviceProperty_WhiteBalancePresetColorTemperature,
+	CrDeviceProperty_WhiteBalanceRGain,
+	CrDeviceProperty_WhiteBalanceBGain,
+	CrDeviceProperty_WhiteBalanceOffsetColorTempATW,
+	CrDeviceProperty_WhiteBalanceOffsetTintATW,
+	CrDeviceProperty_WhiteBalanceOffsetSetting,
+	CrDeviceProperty_WhiteBalanceOffsetColorTemp,
+	CrDeviceProperty_PaintLookMasterBlack,
+	CrDeviceProperty_PaintLookRBlack,
+	CrDeviceProperty_PaintLookBBlack,
+	CrDeviceProperty_PaintLookKneeSetting,
+	CrDeviceProperty_PaintLookAutoKnee,
+	CrDeviceProperty_PaintLookKneePoint,
+	CrDeviceProperty_PaintLookKneeSlope,
+	CrDeviceProperty_PaintLookDetailSetting,
+	CrDeviceProperty_PaintLookDetailLevel,
+	CrDeviceProperty_UserBaseLookOutput,
+	CrDeviceProperty_MonitorLUTSetting1,
+	CrDeviceProperty_MonitorLUTSetting2,
+	CrDeviceProperty_MonitorLUTSetting3,
+	CrDeviceProperty_SQModeSetting,
+	CrDeviceProperty_MovieQualityFullAutoMode,
+	CrDeviceProperty_DeSqueezeDisplayRatio,
+	CrDeviceProperty_ZoomPositionSetting,
+	CrDeviceProperty_FileSettingsCameraId,
+	CrDeviceProperty_FileSettingsReelNumber,
+	CrDeviceProperty_FileSettingsCameraPosition,
+	CrDeviceProperty_ImageStabilizationFramingStabilizer,
+	CrDeviceProperty_ExposureStep,
+	CrDeviceProperty_EnlargeScreenSetting,
+	CrDeviceProperty_SimulRecSetting,
+	CrDeviceProperty_SimulRecSettingMovieRecButton,
+	CrDeviceProperty_OSDImageMode,
+	CrDeviceProperty_DebugMode,
+	CrDeviceProperty_reserved18,
+	CrDeviceProperty_reserved19,
+	CrDeviceProperty_ShutterSelectMode,
 
 	CrDeviceProperty_S2 = 0x0500,
 	CrDeviceProperty_reserved10,
@@ -628,6 +689,25 @@ enum CrDevicePropertyCode : CrInt32u
 	CrDeviceProperty_TotalBatteryRemain,
 	CrDeviceProperty_TotalBatteryLevel,
 	CrDeviceProperty_BodySerialNumber,
+	CrDeviceProperty_TeleWideLeverValueCapability,
+	CrDeviceProperty_ZoomPositionCurrentValue,
+	CrDeviceProperty_MonitoringTransportProtocol,
+	CrDeviceProperty_MonitoringAvailableFormat,
+	CrDeviceProperty_MonitoringFormatSupportInformation,
+	CrDeviceProperty_MediaSLOT1_ContentsInfoListEnableStatus,
+	CrDeviceProperty_MediaSLOT2_ContentsInfoListEnableStatus,
+	CrDeviceProperty_MediaSLOT1_ContentsInfoListRegenerateUpdateTime,
+	CrDeviceProperty_MediaSLOT2_ContentsInfoListRegenerateUpdateTime,
+	CrDeviceProperty_MediaSLOT1_ContentsInfoListUpdateTime,
+	CrDeviceProperty_MediaSLOT2_ContentsInfoListUpdateTime,
+	CrDeviceProperty_PostViewTransferResourceStatus,
+	CrDeviceProperty_CameraSystemErrorInfo,
+	CrDeviceProperty_FaceEyeDetectionAFStatus,
+	CrDeviceProperty_UploadDatasetVersion,
+	CrDeviceProperty_MonitorLUTSettingOutputDestAssign,
+	CrDeviceProperty_MaximumNumberOfBytes,
+	CrDeviceProperty_FirmwareUpdateCommandVersion,
+	CrDeviceProperty_ModelName,
 
 	CrDeviceProperty_MaxVal	= 0x1000,
 };
@@ -647,6 +727,7 @@ enum CrSdkControlMode : CrInt32u
 {
 	CrSdkControlMode_Remote = 0x00000000,
 	CrSdkControlMode_ContentsTransfer,
+	CrSdkControlMode_RemoteTransfer,
 };
 
 // =========================== S1, S2, AEL, FEL, AWBL ===========================
@@ -670,8 +751,9 @@ enum CrPropValueSet : CrInt16
 // value = F number * 100
 enum CrFnumberSet : CrInt16u
 {
-	CrFnumber_Unknown = 0xFFFE, // Display "--"
-	CrFnumber_Nothing = 0xFFFF, // Nothing to display
+	CrFnumber_IrisClose = 0xFFFD, // Iris Close
+	CrFnumber_Unknown   = 0xFFFE, // Display "--"
+	CrFnumber_Nothing   = 0xFFFF, // Nothing to display
 };
 
 // ExposureBiasCompensation
@@ -1475,6 +1557,12 @@ enum CrFileFormatMovie : CrInt8u
 	CrFileFormatMovie_X_OCN_XT,
 	CrFileFormatMovie_X_OCN_ST,
 	CrFileFormatMovie_X_OCN_LT,
+	CrFileFormatMovie_XAVC_Proxy,
+	CrFileFormatMovie_XAVC_HS_L_422,
+	CrFileFormatMovie_XAVC_HS_L_420,
+	CrFileFormatMovie_XAVC_S_L_422,
+	CrFileFormatMovie_XAVC_S_L_420,
+	CrFileFormatMovie_XAVC_S_I_422,
 };
 
 // Recording Setting(Movie), S&Q Recording Setting, Interval REC(Movie) Record Setting
@@ -1820,6 +1908,10 @@ enum CrDisplayStringType : CrInt32u
 	CrDisplayStringType_IPTC_Metadata_Display = 0x00000014,
 	CrDisplayStringType_SubjectRecognitionAF_Display = 0x00000015,
 	CrDisplayStringType_Reserved11 = 0x00000016,
+	CrDisplayStringType_Reserved12 = 0x00000017,
+	CrDisplayStringType_Camera_Button_Function_Capability_Display = 0x00000018,
+	CrDisplayStringType_Camera_Lever_Function_Capability_Display = 0x00000019,
+	CrDisplayStringType_Camera_Dial_Function_Capability_Display = 0x0000001A,
 };
 
 // Image ID (Numerical Value) Setting
@@ -2429,7 +2521,8 @@ enum CrPictureProfileColorMode : CrInt16u {
 	CrPictureProfileColorMode_S_Gamut3,
 	CrPictureProfileColorMode_BT_2020,             //BT.2020
 	CrPictureProfileColorMode_709,
-	CrPictureProfileColorMode_S_Gamut
+	CrPictureProfileColorMode_S_Gamut,
+	CrPictureProfileColorMode_709tone,
 };
 
 // Picture Profile Detail Adjust Mode
@@ -2454,15 +2547,25 @@ enum CrPictureProfileResetEnableStatus : CrInt8u
 enum CrCreativeLook : CrInt16u
 {
 	CrCreativeLook_ST = 0x0001,
+	CrCreativeLook_Standard = CrCreativeLook_ST,
 	CrCreativeLook_PT,
+	CrCreativeLook_Portrait = CrCreativeLook_PT,
 	CrCreativeLook_NT,
+	CrCreativeLook_Neutral = CrCreativeLook_NT,
 	CrCreativeLook_VV,
+	CrCreativeLook_Vivid = CrCreativeLook_VV,
 	CrCreativeLook_VV2,
+	CrCreativeLook_Vivid2 = CrCreativeLook_VV2,
 	CrCreativeLook_FL,
+	CrCreativeLook_Film = CrCreativeLook_FL,
 	CrCreativeLook_IN,
+	CrCreativeLook_Instant = CrCreativeLook_IN,
 	CrCreativeLook_SH,
+	CrCreativeLook_SoftHighkey = CrCreativeLook_SH,
 	CrCreativeLook_BW,
+	CrCreativeLook_BlackWhite = CrCreativeLook_BW,
 	CrCreativeLook_SE,
+	CrCreativeLook_Sepia = CrCreativeLook_SE,
 	CrCreativeLook_CustomLookOffset          = 0x0100
 };
 
@@ -3411,8 +3514,9 @@ enum CrNDFilterOpticalDensityValue : CrInt16u
 // value = T number * 100
 enum CrTnumber : CrInt16u
 {
-	CrTnumber_Unknown = 0xFFFE, // Display "--"
-	CrTnumber_Nothing = 0xFFFF, // Nothing to display
+	CrTnumber_IrisClose = 0xFFFD, // Iris Close
+	CrTnumber_Unknown   = 0xFFFE, // Display "--"
+	CrTnumber_Nothing   = 0xFFFF, // Nothing to display
 };
 
 // Iris Display Unit
@@ -4138,6 +4242,440 @@ enum CrSlotNumber : CrInt32u
 	CrSlotNumber_Slot2,
 };
 
+// Camera Lever Function
+enum CrCameraLeverFunction : CrInt32u
+{
+	CrCameraLeverFunction_TeleWideLever = 0x50010000,
+};
+
+// OSD Image Mode
+enum CrOSDImageMode : CrInt8u
+{
+	CrOSDImageMode_Off = 0x00,
+	CrOSDImageMode_On,
+};
+
+// HW Signal Shooting Timing Pre-notification
+enum CrSignalShootingTimingPreNotificationMode : CrInt8u
+{
+	CrSignalShootingTimingPreNotification_Off = 0x01,
+	CrSignalShootingTimingPreNotification_On,
+};
+
+// Microphone directivity
+enum CrMicrophoneDirectivity : CrInt8u
+{
+	CrMicrophoneDirectivity_Auto = 0x01,
+	CrMicrophoneDirectivity_All,
+	CrMicrophoneDirectivity_Front,
+	CrMicrophoneDirectivity_Rear,
+};
+
+// Product Showcase Set
+enum CrProductShowcaseSet : CrInt8u
+{
+	CrProductShowcaseSet_Off = 0x01,
+	CrProductShowcaseSet_On,
+};
+
+// Cinematic Vlog Setting
+enum CrCinematicVlogSetting : CrInt8u
+{
+	CrCinematicVlogSetting_Off = 0x01,
+	CrCinematicVlogSetting_On,
+};
+
+// Cinematic Vlog Look
+enum CrCinematicVlogLook : CrInt16u
+{
+	CrCinematicVlogLook_Classic = 0x0001,
+	CrCinematicVlogLook_S_Cinetone,
+	CrCinematicVlogLook_Clean,
+	CrCinematicVlogLook_Chic,
+	CrCinematicVlogLook_Fresh,
+	CrCinematicVlogLook_Mono,
+	CrCinematicVlogLook_User1 = 0x0101,
+	CrCinematicVlogLook_User2,
+	CrCinematicVlogLook_User3,
+	CrCinematicVlogLook_User4,
+	CrCinematicVlogLook_User5,
+	CrCinematicVlogLook_User6,
+	CrCinematicVlogLook_User7,
+	CrCinematicVlogLook_User8,
+	CrCinematicVlogLook_User9,
+	CrCinematicVlogLook_User10,
+	CrCinematicVlogLook_User11,
+	CrCinematicVlogLook_User12,
+	CrCinematicVlogLook_User13,
+	CrCinematicVlogLook_User14,
+	CrCinematicVlogLook_User15,
+	CrCinematicVlogLook_User16,
+};
+
+// Cinematic Vlog Mood
+enum CrCinematicVlogMood : CrInt8u
+{
+	CrCinematicVlogMood_Auto = 0x01,
+	CrCinematicVlogMood_Gold,
+	CrCinematicVlogMood_Ocean,
+	CrCinematicVlogMood_Forest,
+};
+
+// Cinematic Vlog AF Transition Speed
+enum CrCinematicVlogAFTransitionSpeed : CrInt8u
+{
+	CrCinematicVlogAFTransitionSpeed_High = 0x01,
+	CrCinematicVlogAFTransitionSpeed_Middle,
+	CrCinematicVlogAFTransitionSpeed_Low,
+};
+
+// ContentsInfoList Enable Status
+enum CrContentsInfoListEnableStatus : CrInt8u
+{
+	CrContentsInfoListEnableStatus_Disable = 0x00,
+	CrContentsInfoListEnableStatus_Enable,
+};
+
+// PostView Transfer Resource Status
+enum CrPostViewTransferResourceStatus : CrInt8u
+{
+	CrPostViewTransferResourceStatus_Available = 0x01,
+	CrPostViewTransferResourceStatus_Unavailable,
+};
+
+// Monitoring Transport Protocol
+enum CrMonitoringTransportProtocol : CrInt16u
+{
+	CrMonitoringTransportProtocol_Invalid = 0x0000,
+	CrMonitoringTransportProtocol_UDP,
+	CrMonitoringTransportProtocol_TCP,
+};
+
+// Monitoring Available Format[bit0-7] : Delivery Image Quality Level
+// Monitoring Format Support Information[bit0-7] : Delivery Image Quality Level
+enum CrMonitoringFormat_DeliveryImageQualityLevel : CrInt8u
+{
+	CrMonitoringFormat_DeliveryImageQualityLevel_Invalid = 0x00,
+	CrMonitoringFormat_DeliveryImageQualityLevel_Level1,
+	CrMonitoringFormat_DeliveryImageQualityLevel_Level2,
+	CrMonitoringFormat_DeliveryImageQualityLevel_Level3,
+};
+
+// Monitoring Available Format[bit8-15] : VideoCodec
+// Monitoring Format Support Information[bit8-15] : VideoCodec
+enum CrMonitoringFormat_VideoCodec : CrInt8u
+{
+	CrMonitoringFormat_VideoCodec_Jpeg = 0x01,
+	CrMonitoringFormat_VideoCodec_H264,
+	CrMonitoringFormat_VideoCodec_H265,
+};
+
+// Monitoring Available Format[bit16-23] : Resolution
+// Monitoring Format Support Information[bit16-23] : Resolution
+enum CrMonitoringFormat_Resolution : CrInt8u
+{
+	CrMonitoringFormat_Resolution_480x270 = 0x01,
+	CrMonitoringFormat_Resolution_640x336,
+	CrMonitoringFormat_Resolution_640x360,
+	CrMonitoringFormat_Resolution_1024x544,
+	CrMonitoringFormat_Resolution_1024x576,
+	CrMonitoringFormat_Resolution_1280x720,
+	CrMonitoringFormat_Resolution_1920x1080,
+};
+
+// Monitoring Available Format[bit24-31] : FrameRate
+// Monitoring Format Support Information[bit24-31] : FrameRate
+enum CrMonitoringFormat_FrameRate : CrInt8u
+{
+	CrMonitoringFormat_FrameRate_7_50fps = 0x01,
+	CrMonitoringFormat_FrameRate_23_98fps,
+	CrMonitoringFormat_FrameRate_24_00fps,
+	CrMonitoringFormat_FrameRate_25_00fps,
+	CrMonitoringFormat_FrameRate_29_97fps,
+	CrMonitoringFormat_FrameRate_30_00fps,
+};
+
+// Monitoring Available Format[bit32-47] : BitRate
+// Monitoring Format Support Information[bit32-47] : BitRate
+// 100 times the real value
+// e.g.) 0x0064(1Mbps)
+//       0x00C8(2Mbps)
+//       0x0320(8Mbps)
+//       0x0960(24Mbps)
+
+// Monitoring Available Format[bit48] : Resolution Variable Flag
+// Monitoring Format Support Information[bit48] : Resolution Variable Flag
+// 0b0	Not Variable
+// 0b1	Variable
+
+// Monitoring Available Format
+// Monitoring Format Support Information
+union CrMonitoringFormat
+{
+	CrInt64u value;
+	struct
+	{
+		CrMonitoringFormat_DeliveryImageQualityLevel deliveryImageQualityLevel;
+		CrMonitoringFormat_VideoCodec videoCodec;
+		CrMonitoringFormat_Resolution resolution;
+		CrMonitoringFormat_FrameRate frameRate;
+		CrInt16u bitRate; // 100 times the real value
+		CrInt8u resolutionVariableFlag : 1;
+		CrInt8u reserve1 : 7;
+		CrInt8u reserve2;
+	} member;
+};
+
+// Monitoring Output Display SDI
+enum CrMonitoringOutputDisplaySDI : CrInt8u
+{
+	CrMonitoringOutputDisplaySDI_Off = 0x01,
+	CrMonitoringOutputDisplaySDI_On,
+};
+
+// Face Eye Detection AF Status
+enum CrFaceEyeDetectionAFStatus : CrInt8u
+{
+	CrFaceEyeDetectionAFStatus_FaceEyeOnlyAFStop = 0x01,
+	CrFaceEyeDetectionAFStatus_FaceEyeOnlyAF,
+	CrFaceEyeDetectionAFStatus_FaceEyePriorityAF,
+};
+
+// Auto Focus Hold
+enum CrAutoFocusHold : CrInt8u
+{
+	CrAutoFocusHold_Off = 0x01,
+	CrAutoFocusHold_On,
+};
+
+// Push AF Mode Setting
+enum CrPushAFModeSetting : CrInt8u
+{
+	CrPushAFModeSetting_ContinuousShotAF_C = 0x01,
+	CrPushAFModeSetting_SingleShotAF_S,
+};
+
+// Touch Function in MF
+enum CrTouchFunctionInMF : CrInt8u
+{
+	CrTouchFunctionInMF_TrackingAF = 0x01,
+	CrTouchFunctionInMF_SpotFocus,
+};
+
+// Push Auto Focus
+enum CrPushAutoFocus : CrInt16u
+{
+	CrPushAutoFocus_Up = 0x0001,
+	CrPushAutoFocus_Down,
+};
+
+// Push AGC
+enum CrPushAGC : CrInt16u
+{
+	CrPushAGC_Up = 0x0001,
+	CrPushAGC_Down,
+};
+
+// Push Auto Iris
+enum CrPushAutoIris : CrInt16u
+{
+	CrPushAutoIris_Up = 0x0001,
+	CrPushAutoIris_Down,
+};
+
+// ND Filter Preset Value
+enum CrNDFilterPresetValue : CrInt64u
+{
+	CrNDFilterPresetValue_Nothing = 0xFFFFFFFFFFFFFFFF,
+};
+
+// ND Filter Preset Select
+enum CrNDFilterPresetSelect : CrInt8u
+{
+	CrNDFilterPresetSelect_Preset1 = 0x01,
+	CrNDFilterPresetSelect_Preset2,
+	CrNDFilterPresetSelect_Preset3,
+};
+
+// Push Auto ND Filter
+enum CrPushAutoNDFilter : CrInt16u
+{
+	CrPushAutoNDFilter_Up = 0x0001,
+	CrPushAutoNDFilter_Down,
+};
+
+// White Balance Offset Setting
+enum CrWhiteBalanceOffsetSetting : CrInt8u
+{
+	CrWhiteBalanceOffsetSetting_Off = 0x01,
+	CrWhiteBalanceOffsetSetting_On,
+};
+
+// White Balance Switch
+enum CrWhiteBalanceSwitch : CrInt8u
+{
+	CrWhiteBalanceSwitch_PresetMode = 0x01,
+	CrWhiteBalanceSwitch_MemoryAMode,
+	CrWhiteBalanceSwitch_MemoryBMode,
+};
+
+// Paint/Look Detail Setting
+enum CrPaintLookDetailSetting : CrInt8u
+{
+	CrPaintLookDetailSetting_Off = 0x01,
+	CrPaintLookDetailSetting_On,
+};
+
+// Paint/Look Auto Knee
+enum CrPaintLookAutoKnee : CrInt8u
+{
+	CrPaintLookAutoKnee_Off = 0x01,
+	CrPaintLookAutoKnee_On,
+};
+
+// Paint/Look Knee Setting
+enum CrPaintLookKneeSetting : CrInt8u
+{
+	CrPaintLookKneeSetting_Off = 0x01,
+	CrPaintLookKneeSetting_On,
+};
+
+// UserBaseLook Output
+enum CrUserBaseLookOutput : CrInt16u
+{
+	CrUserBaseLookOutput_BT709 = 0x0001,
+	CrUserBaseLookOutput_BT709_Legal,
+	CrUserBaseLookOutput_HLG = 0x0101,
+	CrUserBaseLookOutput_HLG_Legal,
+};
+
+// Monitor LUT Setting Output Dest Assign
+// bit0-7   : MonitorLUT number 
+// bit8-15  : Output xxxxx
+// bit16-31 : Reserved
+enum CrMonitorLUTSettingOutputDestAssign : CrInt32u
+{
+	CrMonitorLUTSettingOutputDestAssign_NumberMask = 0x000000FF,
+	CrMonitorLUTSettingOutputDestAssign_All = 0x00000100,
+	CrMonitorLUTSettingOutputDestAssign_Stream = 0x00000200,
+	CrMonitorLUTSettingOutputDestAssign_Proxy = 0x00000400,
+	CrMonitorLUTSettingOutputDestAssign_HDMI = 0x00000800,
+	CrMonitorLUTSettingOutputDestAssign_SDI = 0x00001000,
+	CrMonitorLUTSettingOutputDestAssign_VF = 0x00002000,
+	CrMonitorLUTSettingOutputDestAssign_LCD = 0x00004000,
+	CrMonitorLUTSettingOutputDestAssign_InternalRec = 0x00008000,
+	CrMonitorLUTSettingOutputDestAssign_SDI2 = 0x00010000,
+};
+
+
+// S&Q Mode Setting
+enum CrSQModeSetting : CrInt8u
+{
+	CrSQModeSetting_Off = 0x01,
+	CrSQModeSetting_On,
+};
+
+// Movie Quality FullAuto Mode 
+enum CrMovieQualityFullAutoMode : CrInt8u
+{
+	CrMovieQualityFullAutoMode_Off_Manual = 0x01,
+	CrMovieQualityFullAutoMode_On_Auto,
+};
+
+// File Settings Camera ID
+enum CrFileSettingsCameraId : CrInt8u
+{
+	CrFileSettingsCameraId_A = 0x01,
+	CrFileSettingsCameraId_B,
+	CrFileSettingsCameraId_C,
+	CrFileSettingsCameraId_D,
+	CrFileSettingsCameraId_E,
+	CrFileSettingsCameraId_F,
+	CrFileSettingsCameraId_G,
+	CrFileSettingsCameraId_H,
+	CrFileSettingsCameraId_I,
+	CrFileSettingsCameraId_J,
+	CrFileSettingsCameraId_K,
+	CrFileSettingsCameraId_L,
+	CrFileSettingsCameraId_M,
+	CrFileSettingsCameraId_N,
+	CrFileSettingsCameraId_O,
+	CrFileSettingsCameraId_P,
+	CrFileSettingsCameraId_Q,
+	CrFileSettingsCameraId_R,
+	CrFileSettingsCameraId_S,
+	CrFileSettingsCameraId_T,
+	CrFileSettingsCameraId_U,
+	CrFileSettingsCameraId_V,
+	CrFileSettingsCameraId_W,
+	CrFileSettingsCameraId_X,
+	CrFileSettingsCameraId_Y,
+	CrFileSettingsCameraId_Z,
+};
+
+// File Settings Camera Position
+enum CrFileSettingsCameraPosition : CrInt8u 
+{
+	CrFileSettingsCameraPosition_Center = 0x01,
+	CrFileSettingsCameraPosition_Left,
+	CrFileSettingsCameraPosition_Right,
+};
+
+// Image Stabilization Framing Stabilizer
+enum CrImageStabilizationFramingStabilizer : CrInt8u
+{
+	CrImageStabilizationFramingStabilizer_OFF = 0x01,
+	CrImageStabilizationFramingStabilizer_ON_Manual,
+	CrImageStabilizationFramingStabilizer_ON_Center,
+};
+
+// Exposure Step
+enum CrExposureStep : CrInt16u
+{
+	CrExposureStep_Invalid = 0x0000,
+};
+
+// Enlarge Screen Setting
+enum CrEnlargeScreenSetting : CrInt8u
+{
+	CrEnlargeScreenSetting_OFF = 0x01,
+	CrEnlargeScreenSetting_ON,
+};
+
+// Simul Rec Setting
+enum CrSimulRecSetting : CrInt8u
+{
+	CrSimulRecSetting_OFF = 0x01,
+	CrSimulRecSetting_ON,
+};
+
+// Simul Rec Setting (Movie Rec Button Toggle 2)
+enum CrSimulRecSettingMovieRecButton : CrInt8u
+{
+	CrSimulRecSettingMovieRecButton_SlotAB_SlotAB = 0x01,
+	CrSimulRecSettingMovieRecButton_SlotA_SlotB,
+	CrSimulRecSettingMovieRecButton_SlotB_SlotA,
+};
+
+// Shutter Select Mode
+enum CrShutterSelectMode : CrInt8u
+{
+	CrShutterSelectMode_Step = 0x01,
+	CrShutterSelectMode_Continue,
+};
+
+// Upload Partial Data Type
+enum CrUploadPartialDataType : CrInt32u
+{
+	CrUploadPartialDataType_FirmwareData = 0x00050001,
+};
+
+// Debug Mode
+enum CrDebugMode : CrInt8u
+{
+	CrDebugMode_OFF = 0x01,
+	CrDebugMode_Pseudo_update_with_Fake_Firmware = 0x02,
+};
 
 class SCRSDK_API CrDeviceProperty
 {
@@ -4619,8 +5157,10 @@ public:
 	CrInt8u*                 ipAddress;
 	CrInt32u                 downTime;
 	CrInt32u                 videoPort;
+	CrInt32u                 metaPort;
+	CrMonitoringFormat_DeliveryImageQualityLevel deliveryImageQualityLevel;
+	CrMonitoringTransportProtocol transportProtocol;
 };
-
 
 // Zoom and Focus PresetInfo isExists
 enum CrZoomAndFocusPresetExist : CrInt8u
@@ -4663,6 +5203,336 @@ public:
 	CrZoomAndFocusPresetZoomOnlyValue        zoomOnlyValue;
 };
 #pragma pack()
+
+class SCRSDK_API CrCaptureDate
+{
+public:
+	CrCaptureDate();
+	~CrCaptureDate();
+	CrCaptureDate(const CrInt64u& unixTime);
+	CrCaptureDate(const CrCaptureDate& ref);
+	CrCaptureDate& operator =(const CrCaptureDate& ref);
+	bool operator ==(const CrCaptureDate& ref);
+
+public:
+	CrInt16u year;
+	CrInt16u month;
+	CrInt16u day;
+	CrInt16u hour;
+	CrInt16u minute;
+	CrInt16u sec;
+	CrInt16u msec;
+};
+
+enum CrGetContentsInfoListType : CrInt8u
+{
+	CrGetContentsInfoListType_All = 0x00,
+	CrGetContentsInfoListType_Range_Month,
+	CrGetContentsInfoListType_Range_Day,
+	CrGetContentsInfoListType_Range_Hour,
+	CrGetContentsInfoListType_Count,
+};
+
+enum CrGetContentsDataControlType : CrInt8u
+{
+	CrGetContentsDataControlType_Resume = 0x00,
+	CrGetContentsDataControlType_Pause,
+	CrGetContentsDataControlType_Cancel,
+};
+
+enum CrGetContentsCompressedDataType : CrInt32u
+{
+	CrGetContentsCompressedDataType_Invalid    = 0x00000000,
+	CrGetContentsCompressedDataType_Thumbnail   = 0x00000001,
+	CrGetContentsCompressedDataType_Screennail = 0x00000002,
+};
+
+enum CrContentsInfo_ContentType : CrInt32u
+{
+	CrContentsInfo_ContentType_Unspecified = 0x00000000,
+	CrContentsInfo_ContentType_Dcf     = 0x00000001,
+	CrContentsInfo_ContentType_M4style = 0x00000004,
+	CrContentsInfo_ContentType_Xdstyle = 0x00000008,
+	CrContentsInfo_ContentType_Pxstyle = 0x00000010,
+};
+
+enum CrContentsInfo_GroupType : CrInt32u
+{
+	CrContentsInfo_GroupType_Unspecified = 0x00000000,
+	CrContentsInfo_GroupType_Continuation,
+	CrContentsInfo_GroupType_Timelapse,
+	CrContentsInfo_GroupType_Bracket,
+};
+
+enum CrContentsInfo_Rating : CrInt32
+{
+	CrContentsInfo_Rating_NotRequired = -1,
+	CrContentsInfo_Rating_Nothing,
+	CrContentsInfo_Rating_1,
+	CrContentsInfo_Rating_2,
+	CrContentsInfo_Rating_3,
+	CrContentsInfo_Rating_4,
+	CrContentsInfo_Rating_5,
+};
+
+enum CrContentsFile_FileFormat : CrInt32u
+{
+	CrContentsFile_FileFormat_Unspecified = 0x00000000,
+	CrContentsFile_FileFormat_Jpeg    = 0x00003801,
+	CrContentsFile_FileFormat_Raw     = 0x0000B101,
+	CrContentsFile_FileFormat_Heif    = 0x0000B110,
+	CrContentsFile_FileFormat_Wav     = 0x00003008,
+	CrContentsFile_FileFormat_Mp4     = 0x0000B982,
+	CrContentsFile_FileFormat_Xml     = 0x0000BA82,
+};
+
+enum CrContentsFile_VideoCodec : CrInt32u
+{
+	CrContentsFile_VideoCodec_Unspecified = 0x00000000,
+	CrContentsFile_VideoCodec_Avc     = 0x48323634,
+	CrContentsFile_VideoCodec_Hevc    = 0x48323635,
+};
+
+enum CrContentsFile_GopStructure : CrInt32u
+{
+	CrContentsFile_GopStructure_Unspecified = 0x00000000,
+	CrContentsFile_GopStructure_LongGop,
+	CrContentsFile_GopStructure_IntraFrame,
+};
+
+enum CrContentsFile_AspectRatio : CrInt32u
+{
+	CrContentsFile_AspectRatio_Unspecified = 0x00000000,
+	CrContentsFile_AspectRatio_4_3,
+	CrContentsFile_AspectRatio_16_9,
+	CrContentsFile_AspectRatio_3_2,
+	CrContentsFile_AspectRatio_1_1,
+	CrContentsFile_AspectRatio_17_9,
+	CrContentsFile_AspectRatio_256_135,
+};
+
+enum CrContentsFile_ColorFormat : CrInt32u
+{
+	CrContentsFile_ColorFormat_Unspecified = 0x00000000,
+	CrContentsFile_ColorFormat_YCbCr420,
+	CrContentsFile_ColorFormat_YCbCr411,
+	CrContentsFile_ColorFormat_YCbCr422,
+	CrContentsFile_ColorFormat_RGB444 = 0x00000011,
+	CrContentsFile_ColorFormat_RGBA4444,
+};
+
+enum CrContentsFile_ScanType : CrInt32u
+{
+	CrContentsFile_ScanType_Unspecified = 0x00000000,
+	CrContentsFile_ScanType_Interlace,
+	CrContentsFile_ScanType_Progressive,
+	CrContentsFile_ScanType_PseudoProgressive,
+	CrContentsFile_ScanType_RealProgressive,
+};
+
+enum CrContentsFile_ProfileIndication : CrInt32u
+{
+	CrContentsFile_ProfileIndication_High = 0x00000001,
+	CrContentsFile_ProfileIndication_Main,
+	CrContentsFile_ProfileIndication_StereoHigh,
+	CrContentsFile_ProfileIndication_High422,
+	CrContentsFile_ProfileIndication_Main10,
+	CrContentsFile_ProfileIndication_Main422_10,
+};
+
+enum CrContentsFile_Rdd18metaCaptureGammaEquation : CrInt32u
+{
+	CrContentsFile_CaptureGammaEquation_Unspecified                     = 0x00000000,
+	CrContentsFile_CaptureGammaEquation_Cine1,
+	CrContentsFile_CaptureGammaEquation_Cine2,
+	CrContentsFile_CaptureGammaEquation_Cine3,
+	CrContentsFile_CaptureGammaEquation_Cine4,
+	CrContentsFile_CaptureGammaEquation_SLog                        = 0x00000021,
+	CrContentsFile_CaptureGammaEquation_R709_800per                 = 0x00000024,
+	CrContentsFile_CaptureGammaEquation_SLog2                       = 0x00000028,
+	CrContentsFile_CaptureGammaEquation_ReproducedUnknownLabel      = 0x00000030,
+	CrContentsFile_CaptureGammaEquation_ItuRRecBt709                = 0x00000035,
+	CrContentsFile_CaptureGammaEquation_UserDefinedCurve9           = 0x00000049,
+	CrContentsFile_CaptureGammaEquation_NxcamStandard               = 0x00000051,
+	CrContentsFile_CaptureGammaEquation_NxcamStillCameraLike,
+	CrContentsFile_CaptureGammaEquation_Xvycc,
+	CrContentsFile_CaptureGammaEquation_SLog3_SGamut3,
+	CrContentsFile_CaptureGammaEquation_SLog3_SGamut3Cine,
+	CrContentsFile_CaptureGammaEquation_ItuRRecBt2020,
+	CrContentsFile_CaptureGammaEquation_ItuRRecBt2100HybridLogGamma = 0x00000058,
+	CrContentsFile_CaptureGammaEquation_NxcamCinematone1            = 0x00000061,
+	CrContentsFile_CaptureGammaEquation_NxcamCinematone2,
+	CrContentsFile_CaptureGammaEquation_StillsRgb                   = 0x0000F000,
+	CrContentsFile_CaptureGammaEquation_InvalidValue                = 0x0000FFFF,
+};
+
+enum CrContentsFile_Rdd18metaColorPrimaries : CrInt32u
+{
+	CrContentsFile_ColorPrimaries_DeterminedByTheOtherProperties = 0x00000000,
+	CrContentsFile_ColorPrimaries_ItuRBtRec709ColorPrimaries     = 0x00000031,
+	CrContentsFile_ColorPrimaries_ItuRBtRec2020ColorPrimaries,
+	CrContentsFile_ColorPrimaries_SonyGamutForSLog,
+	CrContentsFile_ColorPrimaries_SonyGamut3ForSLog3,
+	CrContentsFile_ColorPrimaries_SonyGamut3forR709_DciP3,
+	CrContentsFile_ColorPrimaries_UnknownStandard                = 0x0000003F,
+	CrContentsFile_ColorPrimaries_StillsRgb                      = 0x0000F000,
+	CrContentsFile_ColorPrimaries_InvalidValue                   = 0x0000FFFF,
+};
+
+enum CrContentsFile_Rdd18metaCodingEquations : CrInt32u
+{
+	CrContentsFile_CodingEquations_DeterminedByColorPrimariesProperties = 0x00000000,
+	CrContentsFile_CodingEquations_ItuRRecBt601CodingEquations,
+	CrContentsFile_CodingEquations_ItuRRecBt709CodingEquations,
+	CrContentsFile_CodingEquations_ItuRRecBt2020NonConstantLuminunce    = 0x00000005,
+	CrContentsFile_CodingEquations_UnknownStandard                      = 0x0000000F,
+	CrContentsFile_CodingEquations_StillsRgb                            = 0x0000F000,
+	CrContentsFile_CodingEquations_InvalidValue                         = 0x0000FFFF,
+};
+
+enum CrContentsFile_AudioCodec : CrInt32u
+{
+	CrContentsFile_AudioCodec_Unspecified = 0x00000000,
+	CrContentsFile_AudioCodec_LinearPcm,
+	CrContentsFile_AudioCodec_AacLc = 0x00000180,
+};
+
+enum CrContentsFile_NumberOfChannels : CrInt32u
+{
+	CrContentsFile_NumberOfChannels_Unspecified       = 0x00000000,
+	CrContentsFile_NumberOfChannels_Mono          = 0x00000010,
+	CrContentsFile_NumberOfChannels_Stereo        = 0x00000020,
+	CrContentsFile_NumberOfChannels_2_1_Channels,
+	CrContentsFile_NumberOfChannels_3_Channels    = 0x00000030,
+	CrContentsFile_NumberOfChannels_3_1_Channels,
+	CrContentsFile_NumberOfChannels_4_Channels    = 0x00000040,
+	CrContentsFile_NumberOfChannels_4_1_Channels,
+	CrContentsFile_NumberOfChannels_5_Channels    = 0x00000050,
+	CrContentsFile_NumberOfChannels_5_1_Channels,
+	CrContentsFile_NumberOfChannels_5_2_Channels,
+	CrContentsFile_NumberOfChannels_6_Channels    = 0x00000060,
+	CrContentsFile_NumberOfChannels_6_1_Channels,
+	CrContentsFile_NumberOfChannels_6_2_Channels,
+	CrContentsFile_NumberOfChannels_7_Channels    = 0x00000070,
+	CrContentsFile_NumberOfChannels_7_1_Channels,
+	CrContentsFile_NumberOfChannels_7_2_Channels,
+	CrContentsFile_NumberOfChannels_8_Channels    = 0x00000080,
+	CrContentsFile_NumberOfChannels_8_1_Channels,
+	CrContentsFile_NumberOfChannels_8_2_Channels,
+	CrContentsFile_NumberOfChannels_9_Channels    = 0x00000090,
+	CrContentsFile_NumberOfChannels_9_1_Channels,
+	CrContentsFile_NumberOfChannels_9_2_Channels,
+};
+
+typedef struct
+{
+	CrInt32u imagePixWidth;
+	CrInt32u imagePixHeight;
+} CrContentsFile_ImageParam;
+
+typedef struct
+{
+	CrInt32u startTimeCode;
+	CrInt32u endTimeCode;
+	CrContentsFile_VideoCodec videoCodec;
+	bool proxyStatus;
+	CrContentsFile_GopStructure gopStructure;
+	CrInt32u width;
+	CrInt32u height;
+	CrContentsFile_AspectRatio aspectRatio;
+	CrContentsFile_ColorFormat colorFormat;
+	CrInt32u imageBitDepth;
+	CrInt32u framesPerThousandSeconds;
+	CrContentsFile_ScanType scanType;
+	CrInt32u bitrateMbps;
+	CrInt32u imageFramesPerThousandSeconds;
+	CrContentsFile_ProfileIndication profileIndication;
+	CrInt32u profileLevel;
+	CrContentsFile_Rdd18metaCaptureGammaEquation rdd18metaCaptureGammaEquation;
+	CrContentsFile_Rdd18metaColorPrimaries rdd18metaColorPrimaries;
+	CrContentsFile_Rdd18metaCodingEquations rdd18metaCodingEquations;
+} CrContentsFile_VideoParam;
+
+typedef struct
+{
+	CrContentsFile_AudioCodec audioCodec;
+	CrInt32u audioBitDepth;
+	CrInt32u samplingRate;
+	CrContentsFile_NumberOfChannels numberOfChannels;
+} CrContentsFile_AudioParam;
+
+class SCRSDK_API CrContentsFile
+{
+public:
+	CrContentsFile();
+	~CrContentsFile();
+	CrContentsFile(const CrContentsFile& ref);
+	CrContentsFile& operator =(const CrContentsFile& ref);
+
+public:
+	CrInt16u fileId;
+	CrInt32u filePathLength;
+	CrInt8	*filePath;
+	CrContentsFile_FileFormat fileFormat;
+	CrInt64u fileSize;
+	CrInt8u umid[32];
+	bool isImageParamExsist;
+	CrContentsFile_ImageParam imageParam;
+	bool isVideoParamExsist;
+	CrContentsFile_VideoParam videoParam;
+	bool isAudioParamExsist;
+	CrContentsFile_AudioParam audioParam;
+};
+
+class SCRSDK_API CrContentsInfo
+{
+public:
+	CrContentsInfo();
+	~CrContentsInfo();
+	CrContentsInfo(const CrContentsInfo& ref);
+	CrContentsInfo& operator =(const CrContentsInfo& ref);
+
+public:
+	CrContentsInfo_ContentType contentType;
+	CrInt32u contentId;
+	CrInt32u dirNumber;
+	CrInt32u fileNumber;
+	CrContentsInfo_GroupType groupType;
+	CrInt32u groupId;
+	bool representative;
+	CrCaptureDate creationDatetimeUTC;
+	CrCaptureDate modificationDatetimeUTC;
+	CrCaptureDate creationDatetimeLocaltime;
+	CrCaptureDate modificationDatetimeLocaltime;
+	CrContentsInfo_Rating rating;
+	bool protectionStatus;
+	bool dummyContent;
+	CrInt32u shotMarkNum;
+	CrInt8u *shotMark;
+	CrInt32u filesNum;
+	CrContentsFile *files;
+};
+
+class SCRSDK_API CrMoviePlaybackSetting
+{
+public:
+	CrMoviePlaybackSetting();
+	~CrMoviePlaybackSetting();
+	CrMoviePlaybackSetting(const CrMoviePlaybackSetting& ref);
+
+public:
+	CrInt16u reserved1;
+	CrSlotNumber slotId;
+	CrInt32u contentsId;
+	CrInt32u fileId;
+	CrInt8u* ipAddress;
+	CrInt32u downTime;
+	CrInt32u videoPort;
+	CrInt32u audioPort;
+	CrInt32u metaPort;
+	CrInt8u  reserved2;
+	CrInt8u  reserved3;
+};
 
 }
 

@@ -76,6 +76,8 @@ namespace SCRSDK
 	{
 		Setting_Key_EnableLiveView = 0,
 		Setting_Key_PartialBuffer = 6,
+		Setting_Key_GetOSDImage_IntervalTime = 8,
+		Setting_Key_EnablePostView = 9,
 	}SettingKey;
 
 	typedef enum
@@ -111,6 +113,9 @@ namespace SCRSDK
 		CrCameraDeviceModel_ILX_LR1,
 		CrCameraDeviceModel_MPC_2610,
 		CrCameraDeviceModel_ILCE_9M3,
+		CrCameraDeviceModel_ZV_E10M2,
+		CrCameraDeviceModel_PXW_Z200,
+		CrCameraDeviceModel_HXR_NX800,
 	};
 
 	enum CrReconnectingSet : CrInt32u
@@ -167,6 +172,37 @@ namespace SCRSDK
 		CrMonitoringOperation_Stop = 0x00,
 		CrMonitoringOperation_Start,
 	};
+
+	enum CrGetOSDImageIntervalTimeType : CrInt32u
+	{
+		CrGetOSDImageIntervalTimeType_High,
+		CrGetOSDImageIntervalTimeType_Middle,
+		CrGetOSDImageIntervalTimeType_Low,
+	};
+
+	enum CrMoviePlaybackControlType : CrInt32u
+	{
+		CrMoviePlaybackControlType_Start = 0x00000001,
+		CrMoviePlaybackControlType_Stop,
+		CrMoviePlaybackControlType_Play = 0x00000004,
+		CrMoviePlaybackControlType_Pause,
+		CrMoviePlaybackControlType_Seek,
+	};
+
+	enum CrMoviePlaybackStatus : CrInt32u
+	{
+		CrMoviePlaybackStatus_Pause = 0x00000001,
+		CrMoviePlaybackStatus_Playing,
+	};
+
+	enum CrMoviePlaybackDataType : CrInt8u
+	{
+		CrMoviePlaybackDataType_Video = 0x01,
+		CrMoviePlaybackDataType_Audio,
+	};
+
+	static const CrInt32u CrREMOTETRANSFER_PARTIAL_FILE_SIZE_MIN = 0x00000001; // 1B;
+	static const CrInt32u CrREMOTETRANSFER_PARTIAL_FILE_SIZE_MAX = 0x7FFFFFFF; // 2GB - 1;
 }
 
 #endif //CRDEFINES_H

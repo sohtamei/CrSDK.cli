@@ -31,6 +31,8 @@ enum CrCommandId
 	CrCommandId_ContinuousShootingSpotBoost,
 	CrCommandId_ForcedFileNumberReset,
 	CrCommandId_TrackingOnAndAFOn,
+	CrCommandId_CancelZoomPosition,
+	CrCommandId_MovieRecButtonToggle2,
 };
 
 enum CrCommandParam : CrInt16u
