@@ -989,43 +989,91 @@ void CameraDevice::OnWarning(CrInt32u warning)
     case SDK::CrWarning_ContentsTransferMode_Invalid:
     case SDK::CrWarning_ContentsTransferMode_DeviceBusy:
     case SDK::CrWarning_ContentsTransferMode_StatusError:
-        std::cout << "\nThe camera is in a condition where it cannot transfer content.\n\n";
-        std::cout << "Please input '0' to return to the TOP-MENU and connect again.\n";
+        tout << "\nThe camera is in a condition where it cannot transfer content.\n\n";
+        tout << "Please input '0' to return to the TOP-MENU and connect again.\n";
         break;
     case SDK::CrWarning_ContentsTransferMode_CanceledFromCamera:
-        std::cout << "\nContent transfer mode canceled.\n";
-        std::cout << "If you want to continue content transfer, input '0' to return to the TOP-MENU and connect again.\n\n";
+        tout << "\nContent transfer mode canceled.\n";
+        tout << "If you want to continue content transfer, input '0' to return to the TOP-MENU and connect again.\n\n";
         break;
     case SDK::CrWarning_CameraSettings_Read_Result_OK:
-        std::cout << "\nConfiguration file read successfully.\n\n";
+        tout << "\nConfiguration file read successfully.\n\n";
         break;
     case SDK::CrWarning_CameraSettings_Read_Result_NG:
-        std::cout << "\nFailed to load configuration file\n\n";
+        tout << "\nFailed to load configuration file\n\n";
         break;
     case SDK::CrWarning_CameraSettings_Save_Result_NG:
-        std::cout << "\nConfiguration file save request failed.\n\n";
+        tout << "\nConfiguration file save request failed.\n\n";
         break;
     case SDK::CrWarning_RequestDisplayStringList_Success:
-        std::cout << "\nRequest for DisplayStringList  successfully\n\n";        
+        tout << "\nRequest for DisplayStringList  successfully\n\n";
+        //m_dispCameraKeyCV.notify_all();
         break;
     case SDK::CrWarning_RequestDisplayStringList_Error: 
-        std::cout << "\nFailed to Request for DisplayStringList\n\n";
+        tout << "\nFailed to Request for DisplayStringList\n\n";
+        //m_dispCameraKeyCV.notify_all();
         break;
     case SDK::CrWarning_CustomWBCapture_Result_OK:
-        std::cout << "\nCustom WB capture successful.\n\n";
+        tout << "\nCustom WB capture successful.\n\n";
         break;
     case SDK::CrWarning_CustomWBCapture_Result_Invalid:
     case SDK::CrWarning_CustomWBCapture_Result_NG:
-        std::cout << "\nCustom WB capture failure.\n\n";
+        tout << "\nCustom WB capture failure.\n\n";
         break;
     case SDK::CrWarning_FocusPosition_Result_Invalid:
-        std::cout << "\nFocus Position Result Invalid.\n\n";
+        tout << "\nFocus Position Result Invalid.\n\n";
         break;
     case SDK::CrWarning_FocusPosition_Result_OK:
-        std::cout << "\nFocus Position Result OK.\n\n";
+        tout << "\nFocus Position Result OK.\n\n";
         break;
     case SDK::CrWarning_FocusPosition_Result_NG:
-        std::cout << "\nFocus Position Result NG.\n\n";
+        tout << "\nFocus Position Result NG.\n\n";
+        break;
+    case SDK::CrWarning_ControlMonitoring_Result_Start_Failed:
+        tout << "\nMonitoring Start Failed.\n\n";
+        break;
+    case SDK::CrWarning_ControlMonitoring_Result_Stop_Failed:
+        tout << "\nMonitoring Stop Failed.\n\n";
+        break;
+    case SDK::CrWarning_ControlMonitoring_Result_Invalid:
+    case SDK::CrWarning_ControlMonitoring_Result_SystemError:
+    case SDK::CrWarning_ControlMonitoring_Result_MaximumNumberSimultaneousDeliveries:
+    case SDK::CrWarning_ControlMonitoring_Result_ExclusiveError:
+    case SDK::CrWarning_ControlMonitoring_Result_AlreadyStartedInDifferentType:
+    case SDK::CrWarning_ControlMonitoring_Result_MonitoringStopped:
+    case SDK::CrWarning_ControlMonitoring_Result_InvalidParameter:
+    case SDK::CrWarning_ControlMonitoring_Result_WifiHighTemperature:
+    case SDK::CrWarning_ControlMonitoring_Result_Streaming:
+        tout << "\nMonitoring Result NG.\n\n"; tout << warning;
+        break;
+    case SDK::CrWarning_ControlMonitoring_LostReceiving:
+        tout << "\nMonitoring Lost Receiving.\n\n";
+        break;
+    case SDK::CrWarning_ControlMonitoring_ErrorOccurred:
+        tout << "\nMonitoring Error Occurred.\n\n";
+        break;
+    case SDK::CrWarning_RequestZoomAndFocusPreset_Result_Success:
+        tout << "\nRequest for ZoomAndFocusPreset successfully\n\n";
+        break;
+    case SDK::CrWarning_RequestZoomAndFocusPreset_Result_DeviceBusy:
+    case SDK::CrWarning_RequestZoomAndFocusPreset_Result_Error:
+        tout << "\nFailed to Request for ZoomAndFocusPreset\n\n";
+        break;
+    case SDK::CrWarning_Format_Failed:
+        //m_media_formatComplete = true;
+        tout << std::endl << "Format failed \n\n";
+        break;
+    case SDK::CrWarning_Format_Invalid:
+        //m_media_formatComplete = true;
+        tout << std::endl << "Format invalid \n\n";
+        break;
+    case SDK::CrWarning_Format_Complete:
+        //m_media_formatComplete = true;
+        tout << std::endl << "Format completed \n\n";
+        break;
+    case SDK::CrWarning_Format_Canceled:
+        //m_media_formatComplete = true;
+        tout << std::endl << "Format canceled \n\n";
         break;
     default:
         return;
@@ -1034,7 +1082,7 @@ void CameraDevice::OnWarning(CrInt32u warning)
 
 void CameraDevice::OnWarningExt(CrInt32u warning, CrInt32 param1, CrInt32 param2, CrInt32 param3)
 {
-    std::cout << "<Receive>\n";
+    tout << "<Receive>\n";
 #if defined(_WIN64)
     printf_s("warning: 0x%08X\n", warning);
     printf_s(" param1: 0x%08X\n", param1);
@@ -1046,18 +1094,23 @@ void CameraDevice::OnWarningExt(CrInt32u warning, CrInt32 param1, CrInt32 param2
     printf(" param2: 0x%08X\n", param2);
     printf(" param3: 0x%08X\n", param3);
 #endif
-    std::cout << "\n<warning>\n";
-    std::cout << " 0x00060001: CrWarningExt_AFStatus\n";
-    std::cout << "             <param1> Focus Indication\n";
-    std::cout << " 0x00060002: CrWarningExt_OperationResults\n";
-    std::cout << "             <param1> enum CrSdkApi\n";
-    std::cout << "                      0x00000002: CrSdkApi_SetDeviceProperty\n";
-    std::cout << "                      0x00000003: CrSdkApi_SendCommand\n";
-    std::cout << "             <param2> CrDevicePropertyCode or CrCommandId\n";
-    std::cout << "             <param3> enum CrWarningExt_OperationResultsParam\n";
-    std::cout << "                      0x00000000: CrWarningExt_OperationResultsParam_Invalid\n";
-    std::cout << "                      0x00000001: CrWarningExt_OperationResultsParam_OK\n";
-    std::cout << "                      0x00000002: CrWarningExt_OperationResultsParam_NG\n";
+    tout << "\n<warning>\n";
+    tout << " 0x00060001: CrWarningExt_AFStatus\n";
+    tout << "             <param1> enum CrWarningExt_AFStatusParam\n";
+    tout << "                      0x00000001: CrWarningExt_AFStatusParam_Unlocked\n";
+    tout << "                      0x00000002: CrWarningExt_AFStatusParam_Focused_AF_S\n";
+    tout << "                      0x00000003: CrWarningExt_AFStatusParam_NotFocused_AF_S\n";
+    tout << "                      etc.\n";
+    tout << " 0x00060002: CrWarningExt_OperationResults\n";
+    tout << "             <param1> enum CrSdkApi\n";
+    tout << "                      0x00000002: CrSdkApi_SetDeviceProperty\n";
+    tout << "                      0x00000003: CrSdkApi_SendCommand\n";
+    tout << "             <param2> CrDevicePropertyCode or CrCommandId\n";
+    tout << "             <param3> enum CrWarningExt_OperationResultsParam\n";
+    tout << "                      0x00000000: CrWarningExt_OperationResultsParam_Invalid\n";
+    tout << "                      0x00000001: CrWarningExt_OperationResultsParam_OK\n";
+    tout << "                      0x00000002: CrWarningExt_OperationResultsParam_NG\n";
+    tout << "                      etc.\n";
 }
 
 void CameraDevice::OnPropertyChanged()
