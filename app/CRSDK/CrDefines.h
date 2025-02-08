@@ -116,6 +116,7 @@ namespace SCRSDK
 		CrCameraDeviceModel_ZV_E10M2,
 		CrCameraDeviceModel_PXW_Z200,
 		CrCameraDeviceModel_HXR_NX800,
+		CrCameraDeviceModel_ILCE_1M2,
 	};
 
 	enum CrReconnectingSet : CrInt32u

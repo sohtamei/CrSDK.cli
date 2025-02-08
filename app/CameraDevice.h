@@ -1,4 +1,4 @@
-#ifndef CAMERADEVICE_H
+﻿#ifndef CAMERADEVICE_H
 #define CAMERADEVICE_H
 
 #if defined(__linux__)

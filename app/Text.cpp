@@ -1,4 +1,4 @@
-#include "Text.h"
+﻿#include "Text.h"
 #include <iostream>
 
 namespace cli

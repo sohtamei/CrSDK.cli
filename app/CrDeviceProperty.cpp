@@ -1,4 +1,4 @@
-const std::map<std::uint64_t, std::string> map_CrLiveViewPropertyCode
+﻿const std::map<std::uint64_t, std::string> map_CrLiveViewPropertyCode
 {
 	{ SDK::CrLiveViewPropertyCode::CrLiveViewProperty_AF_Area_Position,	"AF_Area_Position" },
 	{ SDK::CrLiveViewPropertyCode::CrLiveViewProperty_Focus_Magnifier_Position,	"Focus_Magnifier_Position" },

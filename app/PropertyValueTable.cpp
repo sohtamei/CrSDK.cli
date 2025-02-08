@@ -1,4 +1,4 @@
-#include <map>
+﻿#include <map>
 #include <cmath>
 #include <sstream>
 #include "PropertyValueTable.h"

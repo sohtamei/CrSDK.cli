@@ -507,6 +507,7 @@ enum CrDevicePropertyCode : CrInt32u
 	CrDeviceProperty_reserved18,
 	CrDeviceProperty_reserved19,
 	CrDeviceProperty_ShutterSelectMode,
+	CrDeviceProperty_AutoRecognitionTargetSetting,
 
 	CrDeviceProperty_S2 = 0x0500,
 	CrDeviceProperty_reserved10,
@@ -708,6 +709,7 @@ enum CrDevicePropertyCode : CrInt32u
 	CrDeviceProperty_MaximumNumberOfBytes,
 	CrDeviceProperty_FirmwareUpdateCommandVersion,
 	CrDeviceProperty_ModelName,
+	CrDeviceProperty_AutoRecognitionTargetCandidates,
 
 	CrDeviceProperty_MaxVal	= 0x1000,
 };
@@ -3127,6 +3129,7 @@ enum CrSubjectRecognitionInAF : CrInt8u
 // Recognition Target
 enum CrRecognitionTarget : CrInt16u
 {
+	CrRecognitionTarget_Auto = 0xFFFF,
 	CrRecognitionTarget_Person = 0x0001,
 	CrRecognitionTarget_AnimalBird,
 	CrRecognitionTarget_Animal,
@@ -4627,6 +4630,17 @@ enum CrImageStabilizationFramingStabilizer : CrInt8u
 	CrImageStabilizationFramingStabilizer_OFF = 0x01,
 	CrImageStabilizationFramingStabilizer_ON_Manual,
 	CrImageStabilizationFramingStabilizer_ON_Center,
+};
+
+// Auto Recognition Target Candidates
+enum CrAutoRecognitionTargetCandidate : CrInt32u
+{
+	CrAutoRecognitionTargetCandidate_Person    = 0x00000001,
+	CrAutoRecognitionTargetCandidate_Animal    = 0x00000002,
+	CrAutoRecognitionTargetCandidate_Bird      = 0x00000004,
+	CrAutoRecognitionTargetCandidate_Insect    = 0x00000008,
+	CrAutoRecognitionTargetCandidate_CarTrain  = 0x00000010,
+	CrAutoRecognitionTargetCandidate_Plane     = 0x00000020,
 };
 
 // Exposure Step

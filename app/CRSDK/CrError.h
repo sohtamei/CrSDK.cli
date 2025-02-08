@@ -163,6 +163,9 @@ namespace SCRSDK
 		CrError_RemoteTransfer_ContentNotFound,
 		CrError_RemoteTransfer_GetContentsDataDisable,
 		CrError_RemoteTransfer_StatusError,
+		CrError_RemoteTransfer_GetContentsInfoListProcessing,
+		CrError_RemoteTransfer_ContentsInfoParseFailed_Slot1,
+		CrError_RemoteTransfer_ContentsInfoParseFailed_Slot2,
 
 		// Monitoring
 		CrError_Monitoring_Unknown					= CrError_Monitoring,

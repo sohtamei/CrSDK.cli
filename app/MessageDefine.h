@@ -13,15 +13,17 @@ namespace cli
     // Error code category
     const std::unordered_map<CrInt32u, text> map_ERR_CAT
     {
-        {SCRSDK::CrError_Generic, TEXT("Generic")},
-        {SCRSDK::CrError_File,    TEXT("File   ")},
-        {SCRSDK::CrError_Connect, TEXT("Connect")},
-        {SCRSDK::CrError_Memory,  TEXT("Memory ")},
-        {SCRSDK::CrError_Api,     TEXT("Api    ")},
-        {SCRSDK::CrError_Polling, TEXT("Polling")},
-        {SCRSDK::CrError_Adaptor, TEXT("Adaptor")},
-        {SCRSDK::CrError_Device,  TEXT("Device ")},
-        {SCRSDK::CrError_Contents,TEXT("Content")},
+        {SCRSDK::CrError_Generic,     TEXT("Generic   ")},
+        {SCRSDK::CrError_File,        TEXT("File      ")},
+        {SCRSDK::CrError_Connect,     TEXT("Connect   ")},
+        {SCRSDK::CrError_Memory,      TEXT("Memory    ")},
+        {SCRSDK::CrError_Api,         TEXT("Api       ")},
+        {SCRSDK::CrError_Polling,     TEXT("Polling   ")},
+        {SCRSDK::CrError_Adaptor,     TEXT("Adaptor   ")},
+        {SCRSDK::CrError_Device,      TEXT("Device    ")},
+        {SCRSDK::CrError_Contents,    TEXT("Content   ")},
+        {SCRSDK::CrError_RemoteTransfer, TEXT("RemoteTransfer")},
+        {SCRSDK::CrError_Monitoring,  TEXT("Monitoring")},
     };
 
     // Error code detail
@@ -86,6 +88,7 @@ namespace cli
         {SCRSDK::CrError_Connect_SSH_UserAuthenticationFailed, TEXT("SSH User authentication failed")},
         {SCRSDK::CrError_Connect_SSH_PortForwardFailed, TEXT("SSH PortForward failed")},
         {SCRSDK::CrError_Connect_SSH_GetFingerprintFailed, TEXT("SSH get Fingerprint Failed")},
+        {SCRSDK::CrError_Connect_RemoteTransfer_NotSupported, TEXT("Remote transfer not supported")},
 
         {SCRSDK::CrError_Memory_Unknown, TEXT("Unknown memory error")},
         {SCRSDK::CrError_Memory_OutOfMemory, TEXT("Cannot allocate memory")},
@@ -123,6 +126,8 @@ namespace cli
         {SCRSDK::CrError_Adaptor_DeviceBusy, TEXT("The setting side is busy")},
         {SCRSDK::CrError_Adaptor_Escape, TEXT("Escape failed")},
 
+        {SCRSDK::CrError_Device_Unknown, TEXT("Unknown device error")},
+
         {SCRSDK::CrError_Contents_Unknown, TEXT("Unknown content transfer error")},
         {SCRSDK::CrError_Contents_InvalidHandle, TEXT("Not valid content handle")},
         {SCRSDK::CrError_Contents_DateFolderList_NotRetrieved, TEXT("Date folder list not acquired")},
@@ -131,7 +136,17 @@ namespace cli
         {SCRSDK::CrError_Contents_Transfer_Cancel,TEXT("Not transferred due to successful content transfer cancel")},
         {SCRSDK::CrError_Contents_RejectRequest, TEXT("Rejected request")},
 
-        {SCRSDK::CrError_Device_Unknown, TEXT("Unknown device error")},
+        {SCRSDK::CrError_RemoteTransfer_Unknown, TEXT("Unknown remote transfer error") },
+        {SCRSDK::CrError_RemoteTransfer_VideoFileNotSupported, TEXT("Video file is not supported") },
+        {SCRSDK::CrError_RemoteTransfer_ContentNotFound, TEXT("Content is not found") },
+        {SCRSDK::CrError_RemoteTransfer_GetContentsDataDisable, TEXT("Get contents data is disable") },
+        {SCRSDK::CrError_RemoteTransfer_StatusError, TEXT("Status error") },
+
+        {SCRSDK::CrError_Monitoring_Unknown, TEXT("Unknown Monitoring error") },
+        {SCRSDK::CrError_Monitoring_InvalidCalled_AlreadyStart, TEXT("Monitoring already start") },
+        {SCRSDK::CrError_Monitoring_InvalidCalled_AlreadyStop, TEXT("Monitoring already stop") },
+        {SCRSDK::CrError_Monitoring_InvalidCalled_LiveViewEnabled, TEXT("Monitoring LiveView enabled") },
+        {SCRSDK::CrError_Monitoring_InvalidCalled_PlaybackEnabled, TEXT("Monitoring Playback enabled") },
     }; 
 
 } // namespace cli

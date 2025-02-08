@@ -1,4 +1,4 @@
-#include "ConnectionInfo.h"
+﻿#include "ConnectionInfo.h"
 #include <cstddef>
 #include <cstring>
 #include "CRSDK/CameraRemote_SDK.h"
