@@ -14,6 +14,7 @@ namespace fs = std::filesystem;
 #include <iomanip>
 #include <iostream>
 #include <thread>
+#include <codecvt>
 #include "CRSDK/CameraRemote_SDK.h"
 #include "CameraDevice.h"
 #include "Text.h"
